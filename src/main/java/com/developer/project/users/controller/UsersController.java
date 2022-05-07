@@ -1,5 +1,9 @@
 package com.developer.project.users.controller;
 
+import java.net.URLEncoder;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +31,25 @@ public class UsersController {
 		
 		service.addUser(dto);
 		mView.setViewName("users/signup");
+		return mView;
+	}
+	
+	@RequestMapping("/users/loginform")
+	public String loginform() {
+		
+		return "/users/loginform";
+	}
+	
+	@RequestMapping("/users/login")
+	public ModelAndView login(ModelAndView mView, UsersDto dto, String url, HttpSession session) {
+		
+		service.loginProcess(dto, session);
+		String encodedUrl=URLEncoder.encode(url);
+		// 다시 돌아갈 url정보를 받는다. 
+		mView.addObject("url", url);
+		mView.addObject("encodedUrl", encodedUrl);
+		mView.setViewName("users/login");
+		
 		return mView;
 	}
 }

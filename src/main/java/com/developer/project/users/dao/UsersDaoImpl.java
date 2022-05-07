@@ -12,9 +12,25 @@ public class UsersDaoImpl implements UsersDao{
 	@Autowired
 	private SqlSession session; 
 
-	@Override
+	@Override  // 회원가입
 	public void insert(UsersDto dto) { //User의 정보가 담긴 dto를 인자로 받아 mapper로 넘긴다. 
 		//mapper에 설정된 insert문을 실행한다.
 		session.insert("users.insert",dto);
+	}
+
+	@Override // 로그인시 id가 있는지 없는지?
+	public UsersDto getData(String id) {
+		//id 여부를 확인할 클래스
+		return session.selectOne("users.getData", id);
+	}
+
+	@Override
+	public boolean isExist(String inputId) {
+		String id=session.selectOne("users.isExist", inputId);
+		if(id==null) {
+			return false;
+		}else {
+			return true;
+		}
 	}
 }
