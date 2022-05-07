@@ -52,4 +52,11 @@ public class UsersController {
 		
 		return mView;
 	}
+	
+	@RequestMapping("/users/logout")
+	public String logout(HttpSession session) {
+		//세션에서 id 라는 키값으로 저장된 값 삭제 
+		session.removeAttribute("id");
+		return "redirect:/home.do";
+	}
 }
