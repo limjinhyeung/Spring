@@ -18,14 +18,14 @@ public class UsersDaoImpl implements UsersDao{
 		session.insert("users.insert",dto);
 	}
 
-	@Override // 로그인시 id가 있는지 없는지?
+	@Override // DB에 저장된 id불러오기
 	public UsersDto getData(String id) {
 		//id 여부를 확인할 클래스
 		return session.selectOne("users.getData", id);
 	}
 
 	@Override
-	public boolean isExist(String inputId) {
+	public boolean isExist(String inputId) { //로그인시 id가 존재하는지 확인 여부
 		String id=session.selectOne("users.isExist", inputId);
 		if(id==null) {
 			return false;
