@@ -2,6 +2,7 @@ package com.developer.project.users.controller;
 
 import java.net.URLEncoder;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,5 +59,12 @@ public class UsersController {
 		//세션에서 id 라는 키값으로 저장된 값 삭제 
 		session.removeAttribute("id");
 		return "redirect:/home.do";
+	}
+	
+	@RequestMapping("/users/delete")
+	public ModelAndView delete(HttpSession session, ModelAndView mView,HttpServletRequest request) {
+		service.deleteUser(session, mView);
+		mView.setViewName("users/delete");
+		return mView;
 	}
 }

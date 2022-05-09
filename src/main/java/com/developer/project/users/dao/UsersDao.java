@@ -7,5 +7,5 @@ public interface UsersDao {
 	public void insert(UsersDto dto); 
 	public UsersDto getData(String id);
 	public boolean isExist(String inputId);
-
+	public void delete(String id);
 }

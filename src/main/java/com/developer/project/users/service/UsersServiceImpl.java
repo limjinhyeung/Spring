@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.developer.project.users.dao.UsersDao;
 import com.developer.project.users.dto.UsersDto;
@@ -62,6 +63,18 @@ public class UsersServiceImpl implements UsersService{
 		map.put("isExist", dao.isExist(inputId));
 		//Map 객체를 리턴해 준다. 
 		return map;
+	}
+
+	@Override
+	public void deleteUser(HttpSession session, ModelAndView mView) {
+		// session에 있는 "id"를 읽어온다. 
+		String id=(String)session.getAttribute("id");
+		// dao에 delete에 id를 전달한다. 
+		dao.delete(id);
+		// session에 id를 지운다. session에 남아있지않게.
+		session.removeAttribute("id");
+		//"id"라는 키값으로  id를 넘긴다. 
+		mView.addObject("id",id);
 	}
 
 	

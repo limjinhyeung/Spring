@@ -33,4 +33,9 @@ public class UsersDaoImpl implements UsersDao{
 			return true;
 		}
 	}
+
+	@Override
+	public void delete(String id) {
+		session.delete("users.delete",id);
+	}
 }
