@@ -8,4 +8,5 @@ public interface UsersDao {
 	public UsersDto getData(String id);
 	public boolean isExist(String inputId);
 	public void delete(String id);
+	public void update(UsersDto dto);
 }

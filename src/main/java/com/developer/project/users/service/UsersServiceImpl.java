@@ -77,5 +77,20 @@ public class UsersServiceImpl implements UsersService{
 		mView.addObject("id",id);
 	}
 
+	@Override
+	public void getInfo(HttpSession session, ModelAndView mView) {
+		// session에 있는 "id"를 읽어온다. 
+		String id=(String)session.getAttribute("id");
+		// dto에 getData의 id를 넣어 얻어온 정보를 넣어준다. 
+		UsersDto dto=dao.getData(id);
+		mView.addObject("dto",dto);
+	}
+	
+	@Override
+	public void updateUser(UsersDto dto, HttpSession session) {
+		String id=(String)session.getAttribute("id");
+		dto.setId(id);
+		dao.update(dto);
+	}
 	
 }

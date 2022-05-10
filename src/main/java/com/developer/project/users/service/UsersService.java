@@ -14,4 +14,6 @@ public interface UsersService {
 	public void loginProcess(UsersDto dto, HttpSession session);
 	public Map<String, Object> isExistId(String inputId);
 	public void deleteUser(HttpSession session, ModelAndView mView);
+	public void getInfo(HttpSession session, ModelAndView mView);
+	public void updateUser(UsersDto dto, HttpSession session);
 }

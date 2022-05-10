@@ -67,4 +67,25 @@ public class UsersController {
 		mView.setViewName("users/delete");
 		return mView;
 	}
+	
+	@RequestMapping("/users/private/info")
+	public ModelAndView info(HttpSession session, ModelAndView mView) {
+		service.getInfo(session, mView);
+		mView.setViewName("users/info");
+		return mView;
+	}
+	
+	@RequestMapping("/users/private/mypage")
+	public ModelAndView mypage(HttpSession session, ModelAndView mView, HttpServletRequest request,UsersDto dto) {
+		service.getInfo(session, mView);
+		mView.setViewName("users/mypage");
+		return mView;
+	}
+	
+	@RequestMapping(value="/users/mypageupdate", method = RequestMethod.POST)
+	public ModelAndView update(UsersDto dto, HttpSession session, ModelAndView mView, HttpServletRequest request) {
+		service.updateUser(dto, session);
+		mView.setViewName("users/mypageup");
+		return mView;
+	}
 }

@@ -10,7 +10,7 @@
 <body>
 <h2>개인정보페이지</h2>
 <ul>
-	<li><a href="${pageContext.request.contextPath}/users/mypage.do">내 정보 관리</a></li>
+	<li><a href="${pageContext.request.contextPath}/users/private/mypage.do">내 정보 관리</a></li>
 	<li><a href="javascript:deleteConfirm()">회원탈퇴</a></li>
 </ul>
 
